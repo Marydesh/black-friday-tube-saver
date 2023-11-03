@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- https://bulma.io/documentation/elements/title/ -->
+    <link rel="shortcut icon" href="#" type="image/x-icon">
     <title>Book Buddy Base</title>
     <style>
         body {
@@ -20,18 +22,45 @@
 
 <body>
     <header>
-        <div class="navbar">
+        <nav class="navbar">
             <h1>Book Buddy Base</h1>
-        </div>
+            <div class="navbar-menu">
+                <div class="navbar-item">Item</div>
+                <div class="navbar-item">Item</div>
+                <div class="navbar-item">Item</div>
+                <div class="navbar-item">Item</div>
+                <div class="navbar-item">Item</div>
+                <div class="navbar-item">Item</div>
+            </div>
+        </nav>
 
     </header>
     <section class="hero">
         <div id="container-center">
             <input type="text" placeholder="Search for a subject or a book title..." size=100 id="search-bar">
+            <button type="button">Search</button>
 
         </div>
+    </section>
+    <section id="books">
+
     </section>
     <script src="./Assets/script.js"></script>
 </body>
 
 </html>
+
+
+<!-- 
+    Title: Tom Sawyer Abroad
+    Author: Mark Twain
+    Amazon id: 1984176692
+        .id_amazon[0]
+    First year published: 1894
+        .first_publish_year
+    Number of pages: 119
+    First sentence: DO you reckon Tom Sawyer was satisfied after all them adventures?
+    Currently reading: 0
+    E-Book access: public
+    Cover ID: 9162125 
+-->
