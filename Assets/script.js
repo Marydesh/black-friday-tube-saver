@@ -4,6 +4,7 @@ var searchButton = document.getElementById('search-button');
 const booksElement = document.querySelector('#books');
 var searchInputVal = searchInput.value;
 var wordInput = document.getElementById('word-input');
+var wordSearchButton =document.getElementById(''); 
 
 
 
@@ -37,6 +38,7 @@ async function searchOpenLibrary(searchInputVal) {
     titleH2.innerText = book.title
 
     cardDiv.append(titleH2)
+    
     appendProperty('Author', book.author_name[0])
     appendProperty('Amazon id', book.id_amazon?.[0])
     appendProperty('First year published', book.first_publish_year)
@@ -45,7 +47,14 @@ async function searchOpenLibrary(searchInputVal) {
     appendProperty('Currently reading', book.currently_reading_count)
     appendProperty('E-Book access', book.ebook_access)
 
+    var bookCover = document.createElement("img");
+      bookCover.setAttribute("src", 'https://covers.openlibrary.org/b/id/' + book.cover_i + '.jpg');
+      bookCover.setAttribute("height", "140");
+      bookCover.setAttribute("width", "140");
+      
+
     booksElement.append(cardDiv)
+    cardDiv.append(bookCover)
 
     function appendProperty(title, value) {
       let p = document.createElement('p')
@@ -58,24 +67,6 @@ async function searchOpenLibrary(searchInputVal) {
 
 searchButton.addEventListener('click', formSearchButton)
 
-
-//   fetch(requestURL + title)
-// .then(function (response) {
-//   return response.json();
-// })
-// .then(function (data) {
-//   console.log(data)
-//   console.log('Title: '+ data.docs[0].title)
-//   console.log('Author: '+ data.docs[0].author_name[0])
-//   console.log('Amazon id: ' + data.docs[0].id_amazon[0])
-//   console.log('First year published: '+ data.docs[0].first_publish_year)
-//   console.log('Number of pages: ' + data.docs[0].number_of_pages_median)
-//   console.log('First sentence: '+ data.docs[0].first_sentence[0,1])
-//   console.log('Currently reading: ' + data.docs[0].currently_reading_count)
-//   console.log('E-Book access: '+ data.docs[0].ebook_access)
-// })
-// }
-// searchOpenLibrary()
 
 function formSearchButton(event) {
   event.preventDefault();
@@ -94,10 +85,7 @@ function formSearchButton(event) {
   search(searchInputVal)
 }
 
-
-
-//try {
-//const response = await fetch(worsURL + word + '/' + synonyms || antonyms || rhymes || definition || example, options);
+wordSearchButton.addEventListener('click', wordSearchButton)
 
 function searchWord() {
 
@@ -124,14 +112,25 @@ function searchWord() {
     .then(function (data) {
       console.log(data)
 
-    //   const response = await fetch(wordURL + bank + '/' + synonyms, options)
-    //   const result = await response.text();
-    //   console.log(result);
-    // } catch (error) {
-    //   console.error(error);
-
-
     })
   }
 
-  searchWord()
+
+  //searchWord()
+
+  function wordSearchButton(event) {
+    event.preventDefault();
+  
+    var wordInputVal = wordInput.value
+  
+    if (!wordInputVal) {
+      console.error('Enter the word!');
+      return;
+    }
+    localStorage.setItem('The word you search:', wordInputVal)
+  
+    console.log(wordInputVal);
+  
+    searchWord()
+
+  }
