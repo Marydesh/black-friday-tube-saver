@@ -1,5 +1,10 @@
 // var seachButton = document.getElementById('')
-const booksElement = document.querySelector('#books')
+var searchInput = document.getElementById('search-bar');
+var searchButton =document.getElementById('search-button');
+const booksElement = document.querySelector('#books');
+var searchInputVal = searchInput.value;
+
+
 
 async function search(query) {
   requestURL = "https://openlibrary.org/search.json?q="
@@ -16,9 +21,9 @@ async function search(query) {
 
 
 */
-async function searchOpenLibrary() {
-  let books = await search('tom sawyer')
-  books = books.slice(0, 10)
+async function searchOpenLibrary(searchInputVal) {
+  let books = await search(searchInputVal)
+  //books = books.slice(0, 10)
   console.log(books)
   // for each book
   books.forEach(book => {
@@ -48,11 +53,10 @@ async function searchOpenLibrary() {
     }
   })
 }
-searchOpenLibrary()
+//searchOpenLibrary()
 
-//seachButton.addEventListener('click', searchOpenLibrary)
+searchButton.addEventListener('click',formSearchButton )
 
-var subject = "animals"
 
 //   fetch(requestURL + title)
 // .then(function (response) {
@@ -72,3 +76,19 @@ var subject = "animals"
 // }
 // searchOpenLibrary()
 
+function formSearchButton(event) {
+  event.preventDefault();
+
+  var searchInputVal = searchInput.value
+
+  if (!searchInputVal) {
+    console.error('Enter the title of the book or the author;s name');
+    return;
+  }
+  localStorage.setItem('search', searchInputVal)
+
+  console.log(searchInputVal);
+
+  searchOpenLibrary(searchInputVal)
+  search(searchInputVal)
+}
