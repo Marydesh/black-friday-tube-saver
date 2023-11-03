@@ -1,14 +1,15 @@
 // var seachButton = document.getElementById('')
 var searchInput = document.getElementById('search-bar');
-var searchButton =document.getElementById('search-button');
+var searchButton = document.getElementById('search-button');
 const booksElement = document.querySelector('#books');
 var searchInputVal = searchInput.value;
+var wordInput = document.getElementById('word-input');
 
 
 
 async function search(query) {
   requestURL = "https://openlibrary.org/search.json?q="
-  let res = await fetch(requestURL+query)
+  let res = await fetch(requestURL + query)
   let data = await res.json()
   return data.docs
 }
@@ -40,7 +41,7 @@ async function searchOpenLibrary(searchInputVal) {
     appendProperty('Amazon id', book.id_amazon?.[0])
     appendProperty('First year published', book.first_publish_year)
     appendProperty('Number of pages', book.number_of_pages_median)
-    appendProperty('First sentence', book.first_sentence?.[0,1])
+    appendProperty('First sentence', book.first_sentence?.[0, 1])
     appendProperty('Currently reading', book.currently_reading_count)
     appendProperty('E-Book access', book.ebook_access)
 
@@ -55,7 +56,7 @@ async function searchOpenLibrary(searchInputVal) {
 }
 //searchOpenLibrary()
 
-searchButton.addEventListener('click',formSearchButton )
+searchButton.addEventListener('click', formSearchButton)
 
 
 //   fetch(requestURL + title)
@@ -92,3 +93,45 @@ function formSearchButton(event) {
   searchOpenLibrary(searchInputVal)
   search(searchInputVal)
 }
+
+
+
+//try {
+//const response = await fetch(worsURL + word + '/' + synonyms || antonyms || rhymes || definition || example, options);
+
+function searchWord() {
+
+  const wordURL = 'https://wordsapiv1.p.rapidapi.com/words/';
+  //var word = wordInput.value;
+  var synonyms = []
+  var antonyms = []
+  var rhymes = []
+  var definition = []
+  var example = []
+
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': 'c2cec6dc1amsha61515a761a8c29p11765cjsn69c9ea2d72f4',
+      'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
+    }
+  };
+
+  fetch(wordURL + 'bank' + '/' + synonyms || antonyms || rhymes || definition || example, options)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data)
+
+    //   const response = await fetch(wordURL + bank + '/' + synonyms, options)
+    //   const result = await response.text();
+    //   console.log(result);
+    // } catch (error) {
+    //   console.error(error);
+
+
+    })
+  }
+
+  searchWord()
