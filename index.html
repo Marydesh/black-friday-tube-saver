@@ -58,15 +58,17 @@
     <section class="form-container">
         <form class="box">
             <div class="field">
-                <label class="label">Enter a word</label>
+                
                 <div class="control">
-                    <input class="input" type="text" placeholder="any word!">
+                    <label for ="word-input" class="label">Enter a word</label>
+                    <input class="input" type="text" id="word-input" placeholder="any word!">
                 </div>
             </div>
 
             <div class="field">
-                <label class="label">What to Get</label>
+                
                 <div class="control">
+                    <label for="resultType" class="label">What to Get</label>
                     <!-- <input class="input" type="password" placeholder="Select from the dropdown"> -->
                     <select class="form-control" id="resultType">
                         <option value="definitions">Definitions</option>
@@ -78,7 +80,7 @@
                 </div>
             </div>
 
-            <button class="button is-primary">Click here!</button>
+            <button class="button is-primary" id="word-search-button">Click here!</button>
         </form>
     </section>
     <script src="./Assets/script.js"></script>
