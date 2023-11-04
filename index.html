@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./Assets/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +20,7 @@
         }
     </style>
 
-    
+
 </head>
 
 <body>
@@ -27,10 +29,14 @@
             <h1>Book Buddy Base</h1>
             <div class="block">
                 <p class="content">
-                    Dive into our vast sea of storybooks — from timeless classics that have captivated generations to the latest heartwarming tales that stir curiosity and joy. Our easy-to-navigate search allows you to find the perfect book for bedtime stories, learning moments, or just a fun-filled afternoon!
+                    Dive into our vast sea of storybooks — from timeless classics that have captivated generations to
+                    the latest heartwarming tales that stir curiosity and joy. Our easy-to-navigate search allows you to
+                    find the perfect book for bedtime stories, learning moments, or just a fun-filled afternoon!
                 </p>
                 <p class="content">
-                    Stumble upon a new word? Our integrated dictionary is tailored for our young readers, helping them grasp meanings with simplicity and fun. It's not just about understanding; it's about falling in love with the language and learning one word at a time.
+                    Stumble upon a new word? Our integrated dictionary is tailored for our young readers, helping them
+                    grasp meanings with simplicity and fun. It's not just about understanding; it's about falling in
+                    love with the language and learning one word at a time.
                 </p>
             </div>
             <div class="navbar-menu">
@@ -49,39 +55,33 @@
     <section id="books">
 
     </section>
-<form class="box">
-  <div class="field">
-    <label class="label">Enter a word</label>
-    <div class="control">
-      <input class="input" type="email" placeholder="enter any word">
-    </div>
-  </div>
+    <section class="form-container">
+        <form class="box">
+            <div class="field">
+                <label class="label">Enter a word</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="any word!">
+                </div>
+            </div>
 
-  <div class="field">
-    <label class="label">What to Get</label>
-    <div class="control">
-      <input class="input" type="password" placeholder="Select from the dropdown">
-    </div>
-  </div>
+            <div class="field">
+                <label class="label">What to Get</label>
+                <div class="control">
+                    <!-- <input class="input" type="password" placeholder="Select from the dropdown"> -->
+                    <select class="form-control" id="resultType">
+                        <option value="definitions">Definitions</option>
+                        <option value="synonyms">Synonyms</option>
+                        <option value="antonyms">Antonyms</option>
+                        <option value="examples">Examples</option>
+                        <option value="rhymes">Rhymes</option>
+                    </select>
+                </div>
+            </div>
 
-  <button class="button is-primary">Let's see what we got!</button>
-</form>
+            <button class="button is-primary">Click here!</button>
+        </form>
+    </section>
     <script src="./Assets/script.js"></script>
 </body>
 
 </html>
-
-
-<!-- 
-    Title: Tom Sawyer Abroad
-    Author: Mark Twain
-    Amazon id: 1984176692
-        .id_amazon[0]
-    First year published: 1894
-        .first_publish_year
-    Number of pages: 119
-    First sentence: DO you reckon Tom Sawyer was satisfied after all them adventures?
-    Currently reading: 0
-    E-Book access: public
-    Cover ID: 9162125 
--->
