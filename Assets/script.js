@@ -4,7 +4,10 @@ var searchButton = document.getElementById('search-button');
 const booksElement = document.querySelector('#books');
 var searchInputVal = searchInput.value;
 var wordInput = document.getElementById('word-input');
-var wordSearchButton =document.getElementById(''); 
+var wordInputVal = wordInput.value
+var wordSearchButton =document.getElementById('word-search-button'); 
+var dropDownOptions= document.getElementById('resultType'); 
+
 
 
 
@@ -74,7 +77,7 @@ function formSearchButton(event) {
   var searchInputVal = searchInput.value
 
   if (!searchInputVal) {
-    console.error('Enter the title of the book or the author;s name');
+    console.error('Enter the title of the book or the author name');
     return;
   }
   localStorage.setItem('search', searchInputVal)
@@ -85,17 +88,17 @@ function formSearchButton(event) {
   search(searchInputVal)
 }
 
-wordSearchButton.addEventListener('click', wordSearchButton)
+wordSearchButton.addEventListener('click', wordSearch)
 
-function searchWord() {
+function searchWord(wordInputVal) {
 
   const wordURL = 'https://wordsapiv1.p.rapidapi.com/words/';
   //var word = wordInput.value;
-  var synonyms = []
-  var antonyms = []
-  var rhymes = []
-  var definition = []
-  var example = []
+  // var synonyms = []
+  // var antonyms = []
+  // var rhymes = []
+  // var definition = []
+  // var example = []
 
   const options = {
     method: 'GET',
@@ -105,7 +108,8 @@ function searchWord() {
     }
   };
 
-  fetch(wordURL + 'bank' + '/' + synonyms || antonyms || rhymes || definition || example, options)
+  fetch(wordURL + wordInputVal, options)
+  // + synonyms || antonyms || rhymes || definition || example, options)
     .then(function (response) {
       return response.json();
     })
@@ -116,9 +120,9 @@ function searchWord() {
   }
 
 
-  //searchWord()
+searchWord()
 
-  function wordSearchButton(event) {
+function wordSearch(event) {
     event.preventDefault();
   
     var wordInputVal = wordInput.value
@@ -131,6 +135,6 @@ function searchWord() {
   
     console.log(wordInputVal);
   
-    searchWord()
+    searchWord(wordInputVal)
+}
 
-  }
