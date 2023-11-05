@@ -1,34 +1,46 @@
 * {
-    font-family: ‘Montserrat’, sans-serif;
-  }
-  nav h1 {
-    font-size: 48px;
-    font-weight: 600;
-  }
-  .form-container {
-    max-width: 500px; /* Adjust this value to make the form wider or narrower */
-    margin: auto;
-    padding: 20px;
+  font-family: ‘Montserrat’, sans-serif;
 }
+
+nav h1 {
+  font-size: 48px;
+  font-weight: 600;
+}
+
+.form-container {
+  max-width: 500px;
+  /* Adjust this value to make the form wider or narrower */
+  margin: auto;
+  padding: 20px;
+}
+
+#word-box {
+  display: block;
+  margin-top: 20px;/* creates space between the button*/
+  border: solid 1px;
+  block-size: auto;
+}
+
 .box {
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #container-center {
   width: 50%;
   display: flex;
   flex-direction: row;
-  justify-content:space-around;
-  align-items:center;
+  justify-content: space-around;
+  align-items: center;
 }
 
 #search-bar {
   /* flex-grow: 1;  */
-  margin-right: 10px; /* Adds some space between the input and the button */
+  margin-right: 10px;
+  /* Adds some space between the input and the button */
 }
 
 #search-button {
-  flex: 0 0 auto; /* The button will not grow or shrink but will be sized according to its content */
+  flex: 0 0 auto;
+  /* The button will not grow or shrink but will be sized according to its content */
 }
-
