@@ -1,10 +1,55 @@
 * {
   font-family: ‘Montserrat’, sans-serif;
 }
-
+body {
+  /* Set the background image on the whole page */
+  background-image: url('./images/pierre-bamin-UgHM_w05lr4-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+header h1 {
+  margin-bottom: 20px; /* Adjust the value as needed */
+}
 nav h1 {
   font-size: 48px;
   font-weight: 600;
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  padding-bottom: 50px;
+}
+
+#container-center {
+  width: 50%;
+  max-width: 600px;
+  margin: 0 auto; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+#search-bar {
+  flex-grow: 1;
+  margin-right: 10px;
+  margin-top: 40px;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+}
+
+#search-button {
+  flex: 0 0 auto;
+  height: 50px;
+  margin-top: 40px;
+  border-radius: 10px;
+  border: none;
 }
 
 .form-container {
@@ -13,10 +58,17 @@ nav h1 {
   margin: auto;
   padding: 20px;
 }
+#books {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* Adjust the space between items */
+  justify-content: center; /* Center the items in the container */
+}
+
 
 #word-box {
   display: block;
-  margin-top: 20px;/* creates space between the button*/
+  margin-top: 20px;
   border: solid 1px;
   block-size: auto;
 }
@@ -25,22 +77,12 @@ nav h1 {
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-#container-center {
-  width: 50%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+footer {
+  text-align: center;
+  padding: 10px;
+  color: rgb(243, 235, 87);
+  margin: 5px;
 }
-
-#search-bar {
-  /* flex-grow: 1;  */
-  margin-right: 10px;
-  /* Adds some space between the input and the button */
-}
-
-#search-button {
-  flex: 0 0 auto;
-  /* The button will not grow or shrink but will be sized according to its content */
+footer h4 {
+  font-weight:600;
 }

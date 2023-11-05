@@ -100,6 +100,7 @@ function formSearchButton(event) {
     console.error('Enter the title of the book or the author name');
     return;
   }
+  // document.body.style.backgroundImage = 'none';
   localStorage.setItem('Your search', searchInputVal)
 
   console.log(searchInputVal);
