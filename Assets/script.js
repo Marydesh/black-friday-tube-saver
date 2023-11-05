@@ -9,14 +9,14 @@ var wordSearchButton = document.getElementById('word-search-button');
 var dropDownOptions = document.getElementById('resultType');
 var q = dropDownOptions.value
 var wordResultDisplay = $('#word-result');
-var words = document.getElementById('word-box')
+var wordResults = document.getElementById('word-box')
 var dropDownSelect = document.querySelector('.dropDownSelect');
 var wordList = document.querySelector('.wordList')
 //var searchedWord = document.querySelector('.searched-word')
 //hides seach results on page load//
-// $(document).ready(function () {
-//   $('#word-result').hide()
-// })
+$(document).ready(function () {
+  $('#word-result').hide()
+})
 
 
 
@@ -38,7 +38,7 @@ async function search(query) {
 */
 async function searchOpenLibrary(searchInputVal) {
   let books = await search(searchInputVal)
-  //books = books.slice(0, 10)
+  books = books.slice(0, 6)
   console.log(books)
   // for each book
   books.forEach(book => {
@@ -55,7 +55,7 @@ async function searchOpenLibrary(searchInputVal) {
     appendProperty('Author', book.author_name[0])
     appendProperty('First year published', book.first_publish_year)
     appendProperty('Number of pages', book.number_of_pages_median)
-    appendProperty('First sentence', book.first_sentence?.[0, 1])
+    appendProperty('First sentence', book.first_sentence?.[0])
     appendProperty('Currently reading', book.currently_reading_count)
     appendProperty('E-Book access', book.ebook_access)
 
@@ -100,7 +100,6 @@ function formSearchButton(event) {
     console.error('Enter the title of the book or the author name');
     return;
   }
-  // document.body.style.backgroundImage = 'none';
   localStorage.setItem('Your search', searchInputVal)
 
   console.log(searchInputVal);
@@ -135,10 +134,10 @@ function searchWord(wordInputVal) {
       for (var i = 0; i <= data.results.length; i++) {
         console.log('definition: ' + data.results[i].definition)
 
-        //console.log('synonyms: ' + data.results[i].synonyms)
-        //console.log('antonyms: ' + data.results[i].antonyms)
-        //console.log('examples: ' + data.results[i].examples)
-        //console.log('also: ' + data.results[i].also)
+        console.log('synonyms: ' + data.results[i].synonyms)
+        console.log('antonyms: ' + data.results[i].antonyms)
+        console.log('examples: ' + data.results[i].examples)
+        console.log('also: ' + data.results[i].also)
 
         // wordResults.forEach(result => {
         //   let cardResult = document.createElement('div')
@@ -160,13 +159,13 @@ function searchWord(wordInputVal) {
         //     p.innerHTML = `${title}: ${value}`
         //     cardResult.append(p)
 
-        //         }
-        //       })
-        //     }
-        //   })
+        //   }
+        // })
+
       }
     })
 }
+    
 function wordSearch(event) {
   event.preventDefault();
 
@@ -182,7 +181,7 @@ function wordSearch(event) {
 
   searchWord(wordInputVal)
   //on change of options in dropdown
-  dropDownOptions.onchange = dropDownOptionsPick
+  dropDownOptions.onchange = dropDownOptionsPick()
 }
 
 
@@ -191,6 +190,7 @@ function dropDownOptionsPick() {
   console.log('You selected:' + q)
   //display the value of dropdown
   dropDownSelect.textContent = q;
+  $('#word-result').show()
 
 
 
@@ -199,5 +199,34 @@ function dropDownOptionsPick() {
 // function displayResult() {
 //   $('#word-result').show()
 
+//displaying word info:
+//definition: 
+         //1. word: Word
+         //definition: definition
+
+         //2. word: Word
+         //definition: definition
+
+         // ect. because a word can have multiple definitions;
+
+//synonyms:
+        //1. word: Word
+        //synonyms : synonyms
+
+        //2. word: Word
+        //synonyms : synonyms
+        
+        //ect.
+
+//anthonyms:
+        //1. word: Word
+        //anthonyms : anthonyms
+
+        //2. word: Word
+        //anthonyms : anthonyms
+
+        //ect. 
+
+//same with examples
 
 
