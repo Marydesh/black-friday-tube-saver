@@ -63,6 +63,11 @@ nav h1 {
   flex-wrap: wrap;
   gap: 16px; /* Adjust the space between items */
   justify-content: center; /* Center the items in the container */
+  
+}
+/*controls the width of the card*/
+.book {
+  width: 400px;
 }
 
 
