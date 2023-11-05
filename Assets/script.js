@@ -7,10 +7,13 @@ var wordInput = document.getElementById('word-input');
 var wordInputVal = wordInput.value
 var wordSearchButton = document.getElementById('word-search-button');
 var dropDownOptions = document.getElementById('resultType');
-var q = dropDownOptions.value
+
+// This wont work because you're just getting the value once, and this variable will not automatically be reassigned when the input changes 
+// var q = dropDownOptions.value
+
 var wordResultDisplay = $('#word-result');
 var wordResults = document.getElementById('word-box')
-var dropDownSelect = document.querySelector('.dropDownSelect');
+// var dropDownSelect = document.querySelector('.dropDownSelect');
 var wordList = document.querySelector('.wordList')
 //var searchedWord = document.querySelector('.searched-word')
 //hides seach results on page load//
@@ -110,10 +113,12 @@ function formSearchButton(event) {
 
 wordSearchButton.addEventListener('click', wordSearch)
 
-function searchWord(wordInputVal) {
+async function searchWord(wordInputVal) {
 
   const wordURL = 'https://wordsapiv1.p.rapidapi.com/words/';
-  var q = []
+  var searchType = dropDownOptions.value
+  if (searchType == "default") return
+  wordList.innerHTML = ""
 
   const options = {
     method: 'GET',
@@ -123,47 +128,48 @@ function searchWord(wordInputVal) {
     }
   };
 
-  fetch(wordURL + wordInputVal + '/' + q, options)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log('Word: ' + data.word)
-      console.log(data)
+  let endpoint = wordURL + wordInputVal + '/' + searchType
 
-      for (var i = 0; i <= data.results.length; i++) {
-        console.log('definition: ' + data.results[i].definition)
+  let res = await fetch(endpoint, options)
+  let data = await res.json()
 
-        console.log('synonyms: ' + data.results[i].synonyms)
-        console.log('antonyms: ' + data.results[i].antonyms)
-        console.log('examples: ' + data.results[i].examples)
-        console.log('also: ' + data.results[i].also)
+  let results = data[searchType]
+  if (searchType == "rhymes") results = results.all
+  if (results.length === 0) {
+    let card = createCard()
+    card.innerText = "No results found"
+    wordList.append(card)
+    return
+  }
+  for (var i = 0; i < results.length; i++) {
+    let result = results[i]
+    let cardResult = createCard()
+    
+    if (searchType === 'definitions') {
+      // let titleH2 = document.createElement('h2')
+      // titleH2.classList = 'title is-size-1 is-size-3-mobile'
+      // titleH2.innerText = data.word
+      // cardResult.append(titleH2)
+      cardResult.innerText = result.definition
+    } else {
+      cardResult.innerText = result
+    }
+    
+    wordList.append(cardResult)
 
-        // wordResults.forEach(result => {
-        //   let cardResult = document.createElement('div')
-        //   cardResult.classList = "card-result p-5 m-5"
-        //   let titleH2 = document.createElement('h2')
-        //   titleH2.classList = 'title is-size-1 is-size-3-mobile'
-        //   titleH2.innerText = data.word
+    function appendProperty(title, value) {
+      let p = document.createElement('p')
+      p.innerHTML = `${title}: ${value}`
+      cardResult.append(p)
+    }
+  }
 
-        //   cardResult.append(titleH2)
+}
 
-        //   appendProperty('Definition: ' + result.definition)
-        //   appendProperty('Synonyms: ' + result.synonyms)
-        //   appendProperty('Antonyms: ' + result.antonyms)
-
-        //   wordList.append(cardResult)
-
-        //   function appendProperty(title, value) {
-        //     let p = document.createElement('p')
-        //     p.innerHTML = `${title}: ${value}`
-        //     cardResult.append(p)
-
-        //   }
-        // })
-
-      }
-    })
+function createCard() {
+  let card = document.createElement('div')
+  card.classList = "card card-result p-5 m-5"
+  return card
 }
     
 function wordSearch(event) {
@@ -177,7 +183,7 @@ function wordSearch(event) {
   }
   localStorage.setItem('The word you search:', wordInputVal)
 
-  console.log('The word you search:  ' + wordInputVal);
+  // console.log('The word you search:  ' + wordInputVal);
 
   searchWord(wordInputVal)
   //on change of options in dropdown
@@ -189,7 +195,7 @@ function dropDownOptionsPick() {
   var q = dropDownOptions.value
   console.log('You selected:' + q)
   //display the value of dropdown
-  dropDownSelect.textContent = q;
+  // dropDownSelect.textContent = q;
   $('#word-result').show()
 
 
