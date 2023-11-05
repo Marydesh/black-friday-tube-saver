@@ -196,37 +196,5 @@ function dropDownOptionsPick() {
 
 
 }
-// function displayResult() {
-//   $('#word-result').show()
-
-//displaying word info:
-//definition: 
-         //1. word: Word
-         //definition: definition
-
-         //2. word: Word
-         //definition: definition
-
-         // ect. because a word can have multiple definitions;
-
-//synonyms:
-        //1. word: Word
-        //synonyms : synonyms
-
-        //2. word: Word
-        //synonyms : synonyms
-        
-        //ect.
-
-//anthonyms:
-        //1. word: Word
-        //anthonyms : anthonyms
-
-        //2. word: Word
-        //anthonyms : anthonyms
-
-        //ect. 
-
-//same with examples
 
 
