@@ -15,9 +15,10 @@ nav h1 {
 }
 
 #word-box {
-  display:contents;
+  display: block;
   margin-top: 20px;/* creates space between the button*/
   border: solid 1px;
+  block-size: auto;
 }
 
 .box {
@@ -31,7 +32,6 @@ nav h1 {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  margin-left: 50px;
 }
 
 #search-bar {
