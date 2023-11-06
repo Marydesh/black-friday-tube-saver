@@ -1,4 +1,4 @@
-// var seachButton = document.getElementById('')
+
 var searchInput = document.getElementById('search-bar');
 var searchButton = document.getElementById('search-button');
 const booksElement = document.querySelector('#books');
@@ -8,21 +8,15 @@ var wordInputVal = wordInput.value
 var wordSearchButton = document.getElementById('word-search-button');
 var dropDownOptions = document.getElementById('resultType');
 
-// This wont work because you're just getting the value once, and this variable will not automatically be reassigned when the input changes 
-// var q = dropDownOptions.value
-
 var wordResultDisplay = $('#word-result');
 var wordResults = document.getElementById('word-box')
-// var dropDownSelect = document.querySelector('.dropDownSelect');
+
 var wordList = document.querySelector('.wordList')
-//var searchedWord = document.querySelector('.searched-word')
-//hides seach results on page load//
+
+//hides search results on page load//
 $(document).ready(function () {
   $('#word-result').hide()
 })
-
-
-
 
 async function search(query) {
   requestURL = "https://openlibrary.org/search.json?q="
@@ -30,15 +24,7 @@ async function search(query) {
   let data = await res.json()
   return data.docs
 }
-/*
-  <div class="book card">
-      <h2 class="title">Tom Sawyer Abroad</h2>
-      <p class="subtitle">Mark Twain</p>
-      <p></p>
-  </div>
 
-
-*/
 async function searchOpenLibrary(searchInputVal) {
   let books = await search(searchInputVal)
   books = books.slice(0, 6)
@@ -66,12 +52,12 @@ async function searchOpenLibrary(searchInputVal) {
     //checkoutLink.text = "Checkout this book now"
     //checkoutLink.href = 'https://openlibrary.org' + book.seed[0]; 
 
-
+    // creates hyperlink to Amazon//
     var appendLink = document.createElement('a');
     appendLink.text = "Buy on Amazon";
     appendLink.href = 'https://www.amazon.com/s?k=' + book.id_amazon?.[0];
 
-
+    //displays bookcover image//
     var bookCover = document.createElement("img");
     bookCover.setAttribute("src", 'https://covers.openlibrary.org/b/id/' + book.cover_i + '.jpg');
     bookCover.setAttribute("height", "140");
@@ -103,12 +89,13 @@ function formSearchButton(event) {
     console.error('Enter the title of the book or the author name');
     return;
   }
-  localStorage.setItem('Your search', searchInputVal)
+  //localStorage.setItem('Your search', searchInputVal)
 
   console.log(searchInputVal);
 
   searchOpenLibrary(searchInputVal)
   search(searchInputVal)
+  recentBookSearches()
 }
 
 wordSearchButton.addEventListener('click', wordSearch)
@@ -144,17 +131,13 @@ async function searchWord(wordInputVal) {
   for (var i = 0; i < results.length; i++) {
     let result = results[i]
     let cardResult = createCard()
-    
+
     if (searchType === 'definitions') {
-      // let titleH2 = document.createElement('h2')
-      // titleH2.classList = 'title is-size-1 is-size-3-mobile'
-      // titleH2.innerText = data.word
-      // cardResult.append(titleH2)
       cardResult.innerText = result.definition
     } else {
       cardResult.innerText = result
     }
-    
+
     wordList.append(cardResult)
 
     function appendProperty(title, value) {
@@ -171,7 +154,7 @@ function createCard() {
   card.classList = "card card-result p-5 m-5"
   return card
 }
-    
+
 function wordSearch(event) {
   event.preventDefault();
 
@@ -181,26 +164,43 @@ function wordSearch(event) {
     console.error('Enter the word!');
     return;
   }
-  localStorage.setItem('The word you search:', wordInputVal)
+  //localStorage.setItem('The word you search:', wordInputVal)
 
   // console.log('The word you search:  ' + wordInputVal);
 
   searchWord(wordInputVal)
   //on change of options in dropdown
   dropDownOptions.onchange = dropDownOptionsPick()
+  recentWordSearches()
 }
 
 
 function dropDownOptionsPick() {
   var q = dropDownOptions.value
   console.log('You selected:' + q)
-  //display the value of dropdown
-  // dropDownSelect.textContent = q;
   $('#word-result').show()
-
-
-
-
 }
 
+function recentBookSearches() {
+
+  var bookSearches = JSON.parse(localStorage.getItem('bookSearches')) || []
+  var searchInputVal = searchInput.value;
+  bookSearches.push(searchInputVal);
+  localStorage.setItem('bookSearches', JSON.stringify(bookSearches))
+  console.log(bookSearches)
+}
+
+function recentWordSearches() {
+
+  var wordSearches = JSON.parse(localStorage.getItem('wordSearches')) || []
+  var wordInputVal = wordInput.value;
+  wordSearches.push(wordInputVal);
+  localStorage.setItem('wordSearches', JSON.stringify(wordSearches))
+  console.log(wordSearches)
+}
+
+function historyBookSearch() {
+  console.log(this.textContent)
+  search(this.textContent);
+}
 

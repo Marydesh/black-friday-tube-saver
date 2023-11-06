@@ -1,6 +1,7 @@
 * {
   font-family: ‘Montserrat’, sans-serif;
 }
+
 body {
   /* Set the background image on the whole page */
   background-image: url('./images/pierre-bamin-UgHM_w05lr4-unsplash.jpg');
@@ -9,13 +10,16 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
 header h1 {
   margin-bottom: 20px;
 }
+
 nav h1 {
   font-size: 48px;
   font-weight: 600;
 }
+
 .block {
   margin-right: 20px;
   margin-left: 20px;
@@ -32,7 +36,7 @@ nav h1 {
 #container-center {
   width: 600px;
   max-width: 95%;
-  margin: 0 auto; 
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,6 +50,7 @@ nav h1 {
   height: 50px;
   border-radius: 10px;
   border: none;
+  padding-left: 20px;
 }
 
 #search-button {
@@ -58,17 +63,19 @@ nav h1 {
 
 .form-container {
   max-width: 500px;
-/* form size */
+  /* form size */
   margin: auto;
   padding: 20px;
 }
+
 #books {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px; 
+  gap: 16px;
   justify-content: center;
-  
+
 }
+
 /*controls the width of the card*/
 .book {
   width: 400px;
@@ -86,12 +93,14 @@ nav h1 {
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 footer {
   text-align: center;
   padding: 10px;
   color: rgb(243, 235, 87);
   margin: 5px;
 }
+
 footer h4 {
-  font-weight:600;
+  font-weight: 600;
 }
