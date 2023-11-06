@@ -76,6 +76,13 @@ nav h1 {
   border-radius: 10px;
   border: none;
 }
+#clear-button {
+  height: 50px;
+  margin-top: 40px;
+  border-radius: 10px;
+  border: none;
+  margin-left: 20px;
+}
 
 .form-container {
   max-width: 500px;
@@ -96,7 +103,17 @@ nav h1 {
 .book {
   width: 400px;
 }
+.checkout-button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: blueviolet;
+  color:aliceblue; 
 
+}
+h1 {
+  color: aliceblue;
+  margin-top: 30px;
+}
 
 #word-box {
   display: block;
