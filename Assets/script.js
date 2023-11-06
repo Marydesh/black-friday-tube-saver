@@ -13,6 +13,7 @@ var wordResults = document.getElementById('word-box')
 
 var wordList = document.querySelector('.wordList')
 var clearButton =document.getElementById('clear-button'); 
+var clearWordButton = document.getElementById('word-clear-button'); 
 
 //event listener on keypress//
 searchInput.addEventListener('keypress', function(e){
@@ -33,6 +34,10 @@ async function search(query) {
 //function to clear book search//
 function clearBooks() {
   booksElement.innerHTML = ""
+}
+
+function clearWordSearch () {
+  wordList.innerHTML = ""
 }
 //functio to filter children's book//
 function isChildrensBook(book) {
@@ -87,7 +92,7 @@ async function searchOpenLibrary(searchInputVal) {
     // creates a button as link to redirect to the Open Library 
     cardDiv.innerHTML += `
       <a href="https://openlibrary.org${book.seed[0]}" target="_blank">
-        <button class="checkout-btn">
+        <button class="checkout-button">
           Check out this book now
         </button>
       </a>
@@ -122,6 +127,7 @@ async function searchOpenLibrary(searchInputVal) {
 
 searchButton.addEventListener('click', formSearchButton)
 clearButton.addEventListener('click', clearBooks)
+clearWordButton.addEventListener('click', clearWordSearch)
 
 function formSearchButton() {
 
