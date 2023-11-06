@@ -12,6 +12,12 @@ var wordResultDisplay = $('#word-result');
 var wordResults = document.getElementById('word-box')
 
 var wordList = document.querySelector('.wordList')
+var clearButton =document.getElementById('clear-button'); 
+
+//event listener on keypress//
+searchInput.addEventListener('keypress', function(e){
+  if (e.key === "Enter") formSearchButton()
+})
 
 //hides search results on page load//
 $(document).ready(function () {
@@ -24,11 +30,36 @@ async function search(query) {
   let data = await res.json()
   return data.docs
 }
+//function to clear book search//
+function clearBooks() {
+  booksElement.innerHTML = ""
+}
+//functio to filter children's book//
+function isChildrensBook(book) {
+  var subjects = ["children", "children's", "juvenile", "juvenile fiction", "kids", "kid's", "young adult"]
+  if (book.subject) {
+    book.subject = book.subject.map(subj => subj.toLowerCase())
+  }
+  // Higher order array methods
+  return subjects.some(subj => book.subject?.includes(subj))
+}
 
 async function searchOpenLibrary(searchInputVal) {
+  //creates a HTML element to display "searching"//
+  booksElement.innerHTML = `
+    <h1>Searching...</h1>
+  `
   let books = await search(searchInputVal)
-  books = books.slice(0, 6)
   console.log(books)
+  books = books.filter(isChildrensBook)
+  books = books.slice(0, 6)
+  if (books.length === 0) {
+    booksElement.innerHTML = `
+      <h1>No results found</h1>
+    `
+    return
+  }
+  clearBooks()
   // for each book
   books.forEach(book => {
     // create card
@@ -48,14 +79,26 @@ async function searchOpenLibrary(searchInputVal) {
     appendProperty('Currently reading', book.currently_reading_count)
     appendProperty('E-Book access', book.ebook_access)
 
-    //var checkoutLink = document.createAttribute('a');
-    //checkoutLink.text = "Checkout this book now"
-    //checkoutLink.href = 'https://openlibrary.org' + book.seed[0]; 
+    // var checkoutLink = document.createElement('a');
+    // checkoutLink.innerText = "Checkout this book now"
+    // checkoutLink.href = 'https://openlibrary.org' + book.seed[0];
+    // console.log('https://openlibrary.org' + book.seed[0]) 
+    
+    // creates a button as link to redirect to the Open Library 
+    cardDiv.innerHTML += `
+      <a href="https://openlibrary.org${book.seed[0]}" target="_blank">
+        <button class="checkout-btn">
+          Check out this book now
+        </button>
+      </a>
+    `
 
     // creates hyperlink to Amazon//
     var appendLink = document.createElement('a');
-    appendLink.text = "Buy on Amazon";
+    appendLink.innerText = "Buy on Amazon";
     appendLink.href = 'https://www.amazon.com/s?k=' + book.id_amazon?.[0];
+     
+    
 
     //displays bookcover image//
     var bookCover = document.createElement("img");
@@ -78,10 +121,9 @@ async function searchOpenLibrary(searchInputVal) {
 }
 
 searchButton.addEventListener('click', formSearchButton)
+clearButton.addEventListener('click', clearBooks)
 
-
-function formSearchButton(event) {
-  event.preventDefault();
+function formSearchButton() {
 
   var searchInputVal = searchInput.value
 
@@ -94,7 +136,6 @@ function formSearchButton(event) {
   console.log(searchInputVal);
 
   searchOpenLibrary(searchInputVal)
-  search(searchInputVal)
   recentBookSearches()
 }
 
@@ -164,9 +205,6 @@ function wordSearch(event) {
     console.error('Enter the word!');
     return;
   }
-  //localStorage.setItem('The word you search:', wordInputVal)
-
-  // console.log('The word you search:  ' + wordInputVal);
 
   searchWord(wordInputVal)
   //on change of options in dropdown
