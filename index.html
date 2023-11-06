@@ -12,7 +12,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <!-- https://bulma.io/documentation/elements/title/ -->
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <title>Book Buddy Base</title>
     <style>
@@ -29,29 +28,31 @@
         <nav class="navbar">
             <h1>Book Buddy Base</h1>
             <div class="block">
-                
+
                 <p class="content">
-                    <i class="fa-solid fa-circle fa-2xs" style="color: #172dd9; margin-right: 8px";></i>
+                    <i class="fa-solid fa-circle fa-2xs" style="color: #172dd9; margin-right: 8px" ;></i>
                     Explore our big collection of books, from old favorites to new, exciting
                     stories that make you wonder and smile. Our simple search helps you quickly find the right book for
                     bedtime, learning, or just having fun in the afternoon!
                 </p>
                 <p class="content">
-                    <i class="fa-solid fa-circle fa-2xs" style="color: #172dd9; margin-right: 8px";></i>
+                    <i class="fa-solid fa-circle fa-2xs" style="color: #172dd9; margin-right: 8px" ;></i>
                     Stumble upon a new word? Our integrated dictionary is tailored for our young readers, helping them
                     grasp meanings with simplicity and fun. It's not just about understanding; it's about falling in
                     love with the language and learning one word at a time.
                 </p>
             </div>
             <nav class="navbar" role="navigation" aria-label="main navigation">
-            <!-- <div class="navbar-menu"> -->
+                <!-- <div class="navbar-menu"> -->
                 <div class="navbar-brand">
-                    <a href="#container-center" class="navbar-item">Search for a book <i class="fa-sharp fa-solid fa-book" style="color: #8026d9; margin-left: 8px;"></i></a>
+                    <a href="#container-center" class="navbar-item">Search for a book <i
+                            class="fa-sharp fa-solid fa-book" style="color: #8026d9; margin-left: 8px;"></i></a>
                     <!-- <i class="fa-solid fa-spell-check" style="color: #2548d4;"></i> -->
-                <a href="#dictionary" class="navbar-item">Go to dictionary <i i class="fa-solid fa-spell-check" style="color: #2548d4; margin-left: 8px;"></i></a>
-            </div>
-            </div>
-        </nav>
+                    <a href="#dictionary" class="navbar-item">Go to dictionary <i i class="fa-solid fa-spell-check"
+                            style="color: #2548d4; margin-left: 8px;"></i></a>
+                </div>
+                </div>
+            </nav>
 
     </header>
     <section class="hero">
@@ -70,7 +71,7 @@
                 <div class="field">
 
                     <div class="control">
-                        <label for="word-input" class="label">Enter a word</label>
+                        <label for="word-input" class="label">Enter a Word</label>
                         <input class="input" type="text" id="word-input" placeholder="any word!">
                     </div>
                 </div>
@@ -79,7 +80,6 @@
 
                     <div class="control">
                         <label for="resultType" class="label">What to Get</label>
-                        <!-- <input class="input" type="password" placeholder="Select from the dropdown"> -->
                         <select class="form-control" id="resultType">
                             <option value="default">Browse through options</option>
                             <option value="definitions">Definitions</option>
@@ -94,8 +94,6 @@
                 <button class="button is-primary" id="word-search-button">Click here!</button>
                 <div class="result" id='word-result'>
                     <section class="word-box" id="word-box">
-                        <!-- <h3><span class="dropDownSelect">Placeholder</span></h3>
-                        <h3><span class="word">Placeholder</span></h3> -->
                         <ul class="wordList"></ul>
                     </section>
                 </div>
