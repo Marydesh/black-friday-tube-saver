@@ -84,10 +84,6 @@ async function searchOpenLibrary(searchInputVal) {
     appendProperty('Currently reading', book.currently_reading_count)
     appendProperty('E-Book access', book.ebook_access)
 
-    // var checkoutLink = document.createElement('a');
-    // checkoutLink.innerText = "Checkout this book now"
-    // checkoutLink.href = 'https://openlibrary.org' + book.seed[0];
-    // console.log('https://openlibrary.org' + book.seed[0]) 
     
     // creates a button as link to redirect to the Open Library 
     cardDiv.innerHTML += `
@@ -115,7 +111,7 @@ async function searchOpenLibrary(searchInputVal) {
     booksElement.append(cardDiv)
     cardDiv.append(bookCover)
     cardDiv.append(appendLink)
-    //cardDiv.append(checkoutLink)
+    
 
     function appendProperty(title, value) {
       let p = document.createElement('p')
@@ -187,11 +183,6 @@ async function searchWord(wordInputVal) {
 
     wordList.append(cardResult)
 
-    function appendProperty(title, value) {
-      let p = document.createElement('p')
-      p.innerHTML = `${title}: ${value}`
-      cardResult.append(p)
-    }
   }
 
 }
